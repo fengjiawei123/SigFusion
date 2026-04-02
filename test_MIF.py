@@ -43,7 +43,7 @@ train_ct_dir = "Test/MRI_PET/source_2"
 train_dataset = MyDataset(root_dir_mri=train_mri_dir, root_dir_ct=train_ct_dir)
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
 
-ckpt_path = 'models/MIF.pth'
+ckpt_path = 'checkpoints/MIF.pth'
 Encoder.load_state_dict(torch.load(ckpt_path)['Encoder'])
 Fusion_Decoder.load_state_dict(torch.load(ckpt_path)['Fusion_Decoder'])
 

@@ -45,7 +45,7 @@ train_vi_dir = "Test/MFFW/source_2"
 train_dataset = MyDataset(root_dir_mri=train_ir_dir, root_dir_ct=train_vi_dir)
 train_loader = DataLoader(train_dataset, batch_size=batch_size, shuffle=False)
 
-ckpt_path = 'models/MFIF.pth'
+ckpt_path = 'checkpoints/MFIF.pth'
 Encoder.load_state_dict(torch.load(ckpt_path)['Encoder'])
 Fusion_Decoder.load_state_dict(torch.load(ckpt_path)['Fusion_Decoder'])
 
