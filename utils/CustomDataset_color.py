@@ -97,7 +97,7 @@ class MyDataset(Dataset):
         
         mri_img = self.rgb2y(mri_img)
         mri_img_tensor = torch.Tensor(mri_img)
-        
+        name = os.path.basename(ct_file)
         ct_img = imread(ct_file)
         if ct_img.shape[-1] != 3:
             ct_img = skimage.color.gray2rgb(ct_img)     
@@ -113,7 +113,7 @@ class MyDataset(Dataset):
         uv_Test_IR = yuv_img[:, :,1:3]#.transpose(2,0,1)
         spect_img_tensor = torch.Tensor(Test_IR).unsqueeze(0)
 
-        return mri_img_tensor, spect_img_tensor, uv_Test_IR
+        return mri_img_tensor, spect_img_tensor, uv_Test_IR, name
     
 # import os
 # from torch.utils.data import DataLoader

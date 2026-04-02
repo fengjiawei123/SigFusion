@@ -72,7 +72,7 @@ class MyDataset(Dataset):
  
         uv_Test_IR = yuv_img_mri[:, :,1:3]
         y_Test_IR = torch.Tensor(Test_IR).unsqueeze(0)
-        
+        name = os.path.basename(ct_file)
 
         ct_img = imread(ct_file)
         if ct_img.shape[-1] != 3:
@@ -86,6 +86,6 @@ class MyDataset(Dataset):
         uv_Test_vis = yuv_img_ct[:, :,1:3]
         y_Test_vis = torch.Tensor(Test_Vis).unsqueeze(0)
 
-        return y_Test_IR,uv_Test_IR, y_Test_vis, uv_Test_vis
+        return y_Test_IR,uv_Test_IR, y_Test_vis, uv_Test_vis,name
     
 
