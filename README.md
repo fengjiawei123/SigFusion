@@ -3,7 +3,7 @@ Official implementation of our AAAI 2026 paper "SigFusion: Unified Signal-Level 
 
 The generated dataset：[Four tasks](https://drive.google.com/drive/folders/1CA5PR-Yig47_p3wUPgNTatNBOl-yq7kF?usp=drive_link)
 
-paper：[our paper](https://ojs.aaai.org/index.php/AAAI/article/view/38009/41971)
+paper：[Our paper](https://ojs.aaai.org/index.php/AAAI/article/view/38009/41971)
 
 If this work is helpful to you, please cite it as:
 ```bibtex
