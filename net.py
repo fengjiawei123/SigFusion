@@ -413,9 +413,6 @@ class Signal_Transformer(nn.Module):
         ):
         super(Signal_Transformer, self).__init__()
         # 使用循环来创建多个 gMLP 实例
-        # self.gmlps = nn.ModuleList([gMLP(input_dim, output_dim) for _ in range(20)])
-        # self.conv3 = ConvToFlat()
-        # self.conv4 = FlatToConv()
         self.MLP = nn.Sequential(
             nn.Linear(input_dim, input_dim*2),
             nn.GELU(),
@@ -662,62 +659,5 @@ class OverlapPatchEmbed(nn.Module):
     def forward(self, x):
         x = self.proj(x)
         return x
-# class Signal_Fusion_Dncoder(nn.Module):
-#     def __init__(self):
-#         super(Signal_Fusion_Dncoder, self).__init__()
-#
-#         # 延迟初始化，稍后根据输入特征维度动态初始化
-#         self.iewts = None
-#         self.channel_fusion = None
-#
-#     def initialize_layers(self, input_dim, output_dim):
-#         # 根据动态计算的输入维度，初始化 IEWT 和通道融合层
-#         self.iewts = nn.ModuleList([IEWT() for _ in range(5)])
-#         self.channel_fusion = nn.Conv1d(input_dim * 2, output_dim, kernel_size=1)
-#         # self.channel_fusion = nn.Linear(input_dim * 2, output_dim)
-#     def forward(self, signal_low_a, signal_high_a, signal_low_b, signal_high_b):
-#         # 在第一次前向传播时确定特征维度
-#         if self.iewts is None or self.channel_fusion is None:
-#             input_dim = signal_low_a[0].shape[1]  # 假设输入为 (batch_size, channels, length)
-#             output_dim = signal_high_a[0].shape[1]
-#             self.initialize_layers(input_dim, output_dim)
-#
-#         # 将 signal_low_a 和 signal_low_b 在通道维度拼接
-#         signal_low_a_b = [torch.cat((a, b), dim=1) for a, b in zip(signal_low_a, signal_low_b)]
-#         signal_high_a_b = [torch.cat((a, b), dim=1) for a, b in zip(signal_high_a, signal_high_b)]
-#
-#         # 通过通道融合层
-#         signal_low_a_b = [self.channel_fusion(x) for x in signal_low_a_b]
-#         signal_high_a_b = [self.channel_fusion(x) for x in signal_high_a_b]
-#
-#         # IEWT 处理过程
-#         feature = signal_low_a_b[4]
-#         for i in range(5):
-#             feature = self.iewts[i](feature, signal_high_a_b[4 - i])
-#
-#         return feature
-# class Signal_Fusion_Dncoder(nn.Module):
-#     def __init__(self, input_dim=1024, output_dim=1024):
-#         super(Signal_Fusion_Dncoder, self).__init__()
-#         # 使用循环创建多个 IEWT 实例
-#         self.iewts = nn.ModuleList([IEWT() for _ in range(5)])
 
-#         # 定义通道融合层，可以是卷积层或全连接层
-#         self.channel_fusion = nn.Conv1d(input_dim * 2, output_dim, kernel_size=1)
-#         # 如果需要使用全连接层：
-#         # self.channel_fusion = nn.Linear(input_dim * 2, output_dim)
-
-#     def forward(self, signal_low_a, signal_high_a, signal_low_b, signal_high_b):
-#         # 将 signal_low_a 和 signal_low_b 在通道维度拼接
-#         signal_low_a_b = [torch.cat((a, b), dim=1) for a, b in zip(signal_low_a, signal_low_b)]
-#         signal_high_a_b = [torch.cat((a, b), dim=1) for a, b in zip(signal_high_a, signal_high_b)]
-#         # 通过通道融合层
-#         signal_low_a_b = [self.channel_fusion(x) for x in signal_low_a_b]
-#         signal_high_a_b = [self.channel_fusion(x) for x in signal_high_a_b]
-
-#         feature = signal_low_a_b[4]
-#         for i in range(5):
-#             feature = self.iewts[i](feature, signal_high_a_b[4 - i])
-
-#         return feature
 
