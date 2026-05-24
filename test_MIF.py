@@ -69,7 +69,7 @@ for i, (data_IR,data_VIS_y, data_VIS_uv,name) in enumerate(train_loader):
         end = time.time()
         # print("--------------time:"+str(end-begin))
         
-        path = "test_result/"+dataset
+        path = "Test_result/"+dataset
         if not os.path.exists(path):
             os.makedirs(path)
 
