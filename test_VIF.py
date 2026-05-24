@@ -58,7 +58,7 @@ for i, (data_IR,data_VIS_y, data_VIS_uv,name) in enumerate(train_loader):
     data_VIS, data_IR = data_VIS_y.cuda(), data_IR.cuda()
     Encoder.eval()
     Fusion_Decoder.eval()
-    print(i)
+    # print(i)
     with torch.no_grad():
         begin = time.time()
         signal_feature_IR, signal_ewt_IR, signal_mfb_IR = Encoder(data_IR)
@@ -83,8 +83,8 @@ for i, (data_IR,data_VIS_y, data_VIS_uv,name) in enumerate(train_loader):
             # data_Fuse_color = cv2.cvtColor(rgb_image_again, cv2.COLOR_RGB2BGR)
             data_Fuse_color = torch.Tensor(rgb_image_again).permute(2, 0, 1)/255.
             # cv2.imwrite(os.path.join(path,f'/fusion{b}.png'), data_Fuse_color)
-            torchvision.utils.save_image(data_Fuse_color,path+name)
-            print("save:"+ dataset + name)
+            torchvision.utils.save_image(data_Fuse_color,path+name[0])
+            print("save:"+ dataset + name[0])
 
 
 
