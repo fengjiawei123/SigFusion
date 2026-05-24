@@ -66,7 +66,7 @@ for i, (data_IR_y,data_IR_uv,data_VIS_y, data_VIS_uv,names) in enumerate(train_l
         signal_feature_VIS, signal_ewt_VIS, signal_mfb_VIS = Encoder(data_VIS)
         data_Fuse = Fusion_Decoder(signal_feature_IR, signal_ewt_IR, signal_mfb_IR, signal_feature_VIS, signal_ewt_VIS, signal_mfb_VIS)
         
-        path = "test_result/"+dataset
+        path = "Test_result/"+dataset
         if not os.path.exists(path):
             os.makedirs(path)
         for b in range(batch_size):
